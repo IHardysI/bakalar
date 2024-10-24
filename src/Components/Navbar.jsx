@@ -1,4 +1,5 @@
 // Navbar.jsx
+
 import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import {
@@ -16,6 +17,8 @@ import {
   Collapse,
   Divider,
   Avatar,
+  Typography,
+  Container,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -91,6 +94,7 @@ function Navbar({ window }) {
         overflow: "auto",
         display: "flex",
         flexDirection: "column",
+        background: theme.palette.secondary.dark,
       }}
     >
       <Avatar
@@ -105,27 +109,40 @@ function Navbar({ window }) {
             <ListItem disablePadding>
               <ListItemButton
                 sx={{ textAlign: "left" }}
-                onClick={() => (children ? toggleSubmenu(label) : setMobileOpen(false))}
-                component={children ? 'div' : Link}
+                onClick={() =>
+                  children ? toggleSubmenu(label) : setMobileOpen(false)
+                }
+                component={children ? "div" : Link}
                 to={children ? undefined : path}
               >
-                <ListItemText primary={label} />
-                {children && <ExpandMore />}
+                <ListItemText primary={label} sx={{ color: "#FFFFFF" }} />
+                {children && <ExpandMore sx={{ color: "#FFFFFF" }} />}
               </ListItemButton>
             </ListItem>
             {children && (
               <Collapse in={openSubmenus[label]} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  {children.map((subItem) => (
-                    <ListItemButton
-                      key={subItem.label}
-                      component={Link}
-                      to={subItem.path}
-                      sx={{ pl: 4 }}
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      <ListItemText primary={subItem.label} />
-                    </ListItemButton>
+                  {children.map((subItem, index) => (
+                    <React.Fragment key={subItem.label}>
+                      {/* Дадаў Divider, які пачынаецца ад пачатку слова */}
+                      <Divider
+                        sx={{
+                          backgroundColor: mobileDividerColor,
+                          marginLeft: theme.spacing(4),
+                        }}
+                      />
+                      <ListItemButton
+                        component={Link}
+                        to={subItem.path}
+                        sx={{ pl: 4 }}
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        <ListItemText
+                          primary={subItem.label}
+                          sx={{ color: "#FFFFFF" }}
+                        />
+                      </ListItemButton>
+                    </React.Fragment>
                   ))}
                 </List>
               </Collapse>
@@ -141,115 +158,202 @@ function Navbar({ window }) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex", width: "100%" }}>
+    <Box sx={{ width: "100%" }}>
       <CssBaseline />
-      <AppBar component="nav" position="static" sx={{ width: "100%" }}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={toggleDrawer}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Avatar
-            alt="logo"
-            src={logo}
-            sx={{
-              width: { xs: 50, sm: 70, md: 100 },
-              height: { xs: 50, sm: 70, md: 100 },
-              margin: "5px",
-              display: { xs: "none", sm: "flex" },
-            }}
-          />
+      {/* Header with logo and text block */}
+      <AppBar
+        position="static"
+        sx={{
+          background: theme.palette.primary.main,
+          padding: { xs: 0.5, sm: 1.5 },
+          display: { xs: "none", sm: "block" },
+        }}
+      >
+        <Container>
           <Box
             sx={{
-              display: { xs: "none", sm: "flex" },
-              gap: { sm: 1, lg: 2 },
-              marginLeft: "auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              flexDirection: "row",
             }}
           >
-            {navItems.map(({ label, children, path }) => (
-              <Box
-                key={label}
-                onMouseEnter={() => handleMouseEnter(label)}
-                onMouseLeave={() => handleMouseLeave(label)}
-                sx={{ position: "relative" }}
+            <Avatar
+              alt="logo"
+              src={logo}
+              sx={{
+                width: { xs: 53, sm: 73, md: 103 },
+                height: { xs: 53, sm: 73, md: 103 },
+                marginRight: 2,
+              }}
+            />
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                gap: { xs: "3px", sm: "5px" },
+                flexGrow: 1,
+              }}
+            >
+              <Typography
+                variant="h5"
+                sx={{
+                  fontSize: { xs: "1.2rem", sm: "1.5rem", md: "2rem" },
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  color: theme.palette.getContrastText(
+                    theme.palette.primary.main
+                  ),
+                  textTransform: "uppercase",
+                }}
               >
-                <Button
-                  component={Link}
-                  to={path}
-                  sx={{
-                    color: "#FFFFFF",
-                    fontWeight: 600,
-                    textWrap: "nowrap",
-                    textTransform: "none",
-                    border: "1px solid #3a3a3a",
-                    borderRadius: 2,
-                    background: theme.palette.secondary.dark,
-                    padding: {
-                      sm: "7px 15px",
-                      md: "8px 17px",
-                      lg: "10px 20px",
-                    },
-                    ":hover": {
-                      backgroundColor: alpha(
-                        theme.palette.secondary.dark,
-                        0.9
-                      ),
-                      borderColor: alpha(theme.palette.secondary.dark, 0.9),
-                      scale: 1.02,
-                    },
-                    transition: "all 0.3s ease",
-                  }}
+                Slavoj Velké Popovice
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  fontSize: { xs: "0.8rem", sm: "1rem", md: "1.2rem" },
+                  textAlign: "center",
+                  color: theme.palette.getContrastText(
+                    theme.palette.primary.main
+                  ),
+                  textTransform: "uppercase",
+                }}
+              >
+                Oficiální stránky hokejového klubu HC Slavoj Velké Popovice
+              </Typography>
+            </Box>
+          </Box>
+        </Container>
+      </AppBar>
+      {/* Navigation Bar */}
+      <AppBar
+        component="nav"
+        position="static"
+        sx={{
+          width: "100%",
+          background: theme.palette.primary.main,
+        }}
+      >
+        <Container>
+          <Toolbar sx={{ justifyContent: "center", width: "100%", padding: 0 }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={toggleDrawer}
+              sx={{
+                display: { sm: "none" },
+                padding: theme.spacing(1),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            {/* Mobile version: Add text next to menu icon */}
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { sm: "none" },
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  textAlign: "center",
+                  textTransform: "uppercase",
+                }}
+              >
+                SLAVOJ VELKÉ POPOVICE
+              </Typography>
+            </Box>
+            {/* Desktop version menu */}
+            <Box
+              sx={{
+                display: { xs: "none", sm: "flex" },
+                gap: { sm: 1, lg: 2 },
+              }}
+            >
+              {navItems.map(({ label, children, path }) => (
+                <Box
+                  key={label}
+                  onMouseEnter={() => handleMouseEnter(label)}
+                  onMouseLeave={() => handleMouseLeave(label)}
+                  sx={{ position: "relative" }}
                 >
-                  {label}
-                </Button>
-                {children && (
-                  <Collapse
-                    in={openSubmenus[label]}
-                    timeout="auto"
-                    unmountOnExit
+                  <Button
+                    component={Link}
+                    to={path}
                     sx={{
-                      position: "absolute",
-                      zIndex: 1,
-                      backgroundColor: theme.palette.secondary.dark,
-                      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
-                      mt: 1,
-                      borderRadius: 1,
-                      padding: "10px",
-                      width: "max-content",
+                      color: "#FFFFFF",
+                      fontWeight: 600,
+                      fontSize: {
+                        xs: "0.7rem",
+                        sm: "0.8rem",
+                        md: "0.9rem",
+                        lg: "1rem",
+                        xl: "1.4rem",
+                      },
+                      textWrap: "nowrap",
+                      textTransform: "none",
+                      background: theme.palette.secondary.dark,
+                      padding: "6px 12px",
+                      ":hover": {
+                        backgroundColor: alpha(
+                          theme.palette.secondary.dark,
+                          0.9
+                        ),
+                        borderColor: alpha(theme.palette.secondary.dark, 0.9),
+                      },
+                      transition: "all 0.3s ease",
                     }}
                   >
-                    <List>
-                      {children.map((subItem) => (
-                        <ListItemButton
-                          key={subItem.label}
-                          component={Link}
-                          to={subItem.path}
-                          sx={{
-                            ":hover": {
-                              backgroundColor:
-                                "rgba(255, 255, 255, 0.1)",
-                            },
-                            borderRadius: 1,
-                            color: "#FFFFFF",
-                          }}
-                          onClick={() => setOpenSubmenus({})}
-                        >
-                          <ListItemText primary={subItem.label} />
-                        </ListItemButton>
-                      ))}
-                    </List>
-                  </Collapse>
-                )}
-              </Box>
-            ))}
-          </Box>
-        </Toolbar>
+                    {label}
+                  </Button>
+                  {children && (
+                    <Collapse
+                      in={openSubmenus[label]}
+                      timeout="auto"
+                      unmountOnExit
+                      sx={{
+                        position: "absolute",
+                        zIndex: 1,
+                        backgroundColor: theme.palette.secondary.dark,
+                        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+                        mt: 1,
+                        borderRadius: 1,
+                        padding: "10px",
+                        width: "max-content",
+                      }}
+                    >
+                      <List>
+                        {children.map((subItem) => (
+                          <ListItemButton
+                            key={subItem.label}
+                            component={Link}
+                            to={subItem.path}
+                            sx={{
+                              ":hover": {
+                                backgroundColor: "rgba(255, 255, 255, 0.1)",
+                              },
+                              borderRadius: 1,
+                              color: "#FFFFFF",
+                            }}
+                            onClick={() => setOpenSubmenus({})}
+                          >
+                            <ListItemText primary={subItem.label} />
+                          </ListItemButton>
+                        ))}
+                      </List>
+                    </Collapse>
+                  )}
+                </Box>
+              ))}
+            </Box>
+          </Toolbar>
+        </Container>
       </AppBar>
+      {/* Drawer for mobile navigation */}
       <Drawer
         container={container}
         variant="temporary"
