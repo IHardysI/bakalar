@@ -60,7 +60,7 @@ const FacebookPageMobile = ({ pageUrl, wallpaperUrl, profileImageUrl, pageName, 
           },
         }}
       >
-        Follow Page
+        Sledovat stránku
       </Button>
     </Box>
   );
