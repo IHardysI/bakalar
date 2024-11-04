@@ -261,15 +261,17 @@ function Navbar({ window }) {
                   display: { sm: "none" },
                 }}
               >
-                <Typography
-                  variant="h6"
-                  sx={{
-                    textAlign: "center",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  SLAVOJ VELKÉ POPOVICE
-                </Typography>
+                <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      textAlign: "center",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    SLAVOJ VELKÉ POPOVICE
+                  </Typography>
+                </Link>
               </Box>
               {/* Desktop version menu */}
               <Box
@@ -286,9 +288,11 @@ function Navbar({ window }) {
                     sx={{ position: "relative" }}
                   >
                     <Button
+                      variant="outlined"
                       component={Link}
                       to={path}
                       sx={{
+                        border: '1.5px solid rgba(255,255,255,0.4)',
                         color: "#FFFFFF",
                         fontWeight: 600,
                         fontSize: {
@@ -300,7 +304,7 @@ function Navbar({ window }) {
                         },
                         textWrap: "nowrap",
                         textTransform: "none",
-                        background: theme.palette.secondary.dark,
+                        //background: theme.palette.secondary.dark,
                         padding: "6px 12px",
                         ":hover": {
                           backgroundColor: alpha(
