@@ -10,6 +10,7 @@ import {
   Container,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import popupImg from '../assets/popup.png'
 
 const ImageDialog = () => {
   const [open, setOpen] = useState(false);
@@ -97,7 +98,7 @@ const ImageDialog = () => {
             </IconButton>
             <Box
               component="img"
-              src="http://www.hcslavojvelkepopovice.cz/uvod/ban/obr_nab2.png"
+              src={popupImg}
               alt="Popover"
               sx={{
                 maxWidth: '100%',
