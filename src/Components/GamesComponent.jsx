@@ -12,7 +12,7 @@ import {
   Alert,
   useMediaQuery,
 } from "@mui/material";
-import { mockGames } from "../data/mockGames";
+import { mockGames } from "../Data/mockGames.js";
 import Grid from "@mui/material/Grid2"; // Using Grid2 with size prop
 
 // Styled Component for Selected Button
