@@ -10,23 +10,25 @@ import {
   Container,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import popupImg from '../assets/popup.png'
+import popupImg from '../assets/popup.png';
 
 const ImageDialog = () => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm')); // Вызначае, ці малое экрана
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm')); // Determine if the screen is small
 
   useEffect(() => {
-    const hasShown = sessionStorage.getItem('imageDialogShown');
-    if (!hasShown) {
-      setOpen(true);
-      sessionStorage.setItem('imageDialogShown', 'true');
-    }
+    // Remove sessionStorage check to show the dialog every time the page reloads
+    setOpen(true);
   }, []);
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  // Function to handle image click and open the mail client
+  const handleImageClick = () => {
+    window.location.href = 'mailto:nabor@hcslavojvelkepopovice.cz';
   };
 
   return (
@@ -35,26 +37,26 @@ const ImageDialog = () => {
         open={open}
         onClose={handleClose}
         aria-labelledby="image-dialog"
-        maxWidth={true} // Адключэнне maxWidth для поўнага кантролю над шырынёй
-        fullWidth={false} // Адключэнне fullWidth
-        scroll="body" // Прачышэнне ўнутранага пракручвання
+        maxWidth={true} // Disable maxWidth for full control over width
+        fullWidth={false} // Disable fullWidth
+        scroll="body" // Remove internal scrolling
         BackdropProps={{
-          sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)', }, // Паўпразрысты чорны фон
+          sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' }, // Semi-transparent black backdrop
         }}
         PaperProps={{
           sx: {
             backgroundColor: 'transparent',
             boxShadow: 'none',
-            padding: 0, // Выдаленне падступаў
-            overflow: 'hidden', // Папярэджанне пракручвання ўнутры
-            maxHeight: '90vh', // Максімальная вышыня
-            borderRadius: isSmallScreen ? 0 : 2, // Закругленыя вуглы толькі калі не поўнаэкранны
-            width: isSmallScreen ? '100%' : 'auto', // Усталёўваем шырыню 98% на малых экранах
-            margin: isSmallScreen ? '1vh auto' : 'auto', // Цэнтраванне дыялогу
+            padding: 0, // Remove padding
+            overflow: 'hidden', // Prevent internal scrolling
+            maxHeight: '90vh', // Maximum height
+            borderRadius: isSmallScreen ? 0 : 2, // Rounded corners only if not full-screen
+            width: isSmallScreen ? '100%' : 'auto', // Set width to 100% on small screens
+            margin: isSmallScreen ? '1vh auto' : 'auto', // Center the dialog
           },
         }}
       >
-        {/* Схаваць загаловак для доступнасці */}
+        {/* Hide the title for accessibility */}
         <span id="image-dialog" style={{ display: 'none' }}>
           Image Dialog
         </span>
@@ -62,55 +64,59 @@ const ImageDialog = () => {
         <DialogContent
           dividers={false}
           sx={{
-            padding: 0, // Выдаленне стандартных падступаў
+            padding: 0, // Remove default padding
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '100%', // Забеспячэнне поўнай вышыні
+            height: '100%', // Ensure full height
           }}
         >
           <Box
             sx={{
-              position: 'relative', // Дазваляе размяшчаць кнопкі адносна гэтага Box
-              display: 'inline-block', // Выява будзе займаць толькі патрэбную шырыню
+              position: 'relative', // Allow positioning of buttons relative to this Box
+              display: 'inline-block', // Image will take only necessary width
               maxWidth: '100%',
               maxHeight: '100%',
             }}
           >
-            {/* Кнопка закрыцця размяшчаецца ў правым верхнім куце выявы */}
+            {/* Close button positioned at the top-right corner of the image */}
             <IconButton
               aria-label="close"
               onClick={handleClose}
               sx={{
                 position: 'absolute',
-                top: 8, // Адступ зверху выявы
-                right: 8, // Адступ справа выявы
+                top: 8, // Distance from the top of the image
+                right: 8, // Distance from the right of the image
                 color: theme.palette.grey[500],
-                backgroundColor: 'rgba(0, 0, 0, 0.5)', // Паўпразрысты фон для бачнасці
+                backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background for visibility
                 '&:hover': {
                   backgroundColor: 'rgba(0, 0, 0, 0.7)',
                 },
-                padding: '4px', // Пашырэнне вобласці кліка
-                zIndex: 2, // Забяспечвае, што кнопка будзе вышэй за выяву
+                padding: '4px', // Expand clickable area
+                zIndex: 2, // Ensure the button is above the image
               }}
             >
               <CloseIcon />
             </IconButton>
+
+            {/* Make the image clickable by adding an onClick handler */}
             <Box
               component="img"
               src={popupImg}
               alt="Popover"
               sx={{
                 maxWidth: '100%',
-                maxHeight: '80vh', // Максімальная вышыня выявы
+                maxHeight: '80vh', // Maximum height of the image
                 width: 'auto',
                 height: 'auto',
                 display: 'block',
-                borderRadius: '8px', // Закругленыя вуглы
+                borderRadius: '8px', // Rounded corners
+                cursor: 'pointer', // Change cursor to pointer on hover
               }}
+              onClick={handleImageClick} // Handle click to open email client
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = 'https://via.placeholder.com/500'; // Запасная выява
+                e.target.src = 'https://via.placeholder.com/500'; // Fallback image
               }}
             />
           </Box>
