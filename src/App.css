@@ -1,0 +1,9 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Папярэджанне гарызантальнага пракручвання */
+body {
+  overflow-x: hidden;
+  margin: 0; /* Пераканацца, што няма лішніх адступаў */
+}
