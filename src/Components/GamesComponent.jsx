@@ -36,18 +36,21 @@ const GameItem = memo(({ game, index }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Grid item xs={12} md={4} sx={{ width: { xs: '100%', sm: '31%' } }}>
+    <Grid item xs={12} md={4} sx={{ width: { xs: "100%", sm: "31%" }, height:{xs:'15px', sm:'auto'},}}>
       <Box
         textAlign="center"
         display="flex"
         alignItems="center"
         flexDirection={isMobile ? "row" : "column"}
-        gap={isMobile ? "10px" : 2}
+        gap={isMobile ? "20px" : 0.5}
         justifyContent="center" // Center content horizontally
         width="100%"
         // Apply right border conditionally
         sx={{
-          borderRight: !isMobile && index < 2 ? `1px solid ${theme.palette.divider}` : "none",
+          borderRight:
+            !isMobile && index < 2
+              ? `1px solid ${theme.palette.divider}`
+              : "none",
           paddingRight: !isMobile && index < 2 ? 2 : 0, // Add padding if border is present
           flexGrow: 1,
         }}
@@ -108,10 +111,10 @@ const CategoryButtons = ({ selectedCategory, onChange }) => {
       display="flex"
       justifyContent="center"
       gap={2}
-      mt={0.5} // Added margin-top for spacing
+      mt={0.5}
       sx={{
         backgroundColor: theme.palette.primary.main,
-        padding: "10px", // Increased padding for better spacing
+        padding: {xs:"6px", md:'10px'}, // Increased padding for better spacing
         borderRadius: theme.shape.borderRadius,
       }}
     >
@@ -122,6 +125,7 @@ const CategoryButtons = ({ selectedCategory, onChange }) => {
           className={selectedCategory === category.value ? "selected" : ""}
           onClick={() => onChange(category.value)}
           aria-label={`Select ${category.label} games`}
+          sx={{ fontSize: { xs: "10px", sm: "14px" }, padding:{xs:'2px 5px'}, sm:'5px' }}
         >
           {category.label}
         </SelectedButton>
@@ -177,7 +181,9 @@ const GamesComponent = () => {
   const displayedGames = isMobile ? games.slice(0, 2) : games;
 
   return (
-    <Box width="100%">
+    <Box width="100%"
+      sx={{marginBottom:'10px', }}
+    >
       {/* Games Section */}
       {loading ? (
         <Box display="flex" justifyContent="center" my={4}>
@@ -191,10 +197,11 @@ const GamesComponent = () => {
         <>
           <Grid
             container
-            spacing={2}
+            spacing={1}
             justifyContent="space-between" // Distribute space between items
             alignItems="flex-start"
             direction={isMobile ? "column" : "row"} // Stack vertically on mobile
+            marginBottom="10px"
           >
             {displayedGames.map((game, index) => (
               <React.Fragment key={game.id}>

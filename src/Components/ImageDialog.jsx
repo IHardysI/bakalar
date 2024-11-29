@@ -37,12 +37,8 @@ const ImageDialog = () => {
         open={open}
         onClose={handleClose}
         aria-labelledby="image-dialog"
-        maxWidth={true} // Disable maxWidth for full control over width
         fullWidth={false} // Disable fullWidth
         scroll="body" // Remove internal scrolling
-        BackdropProps={{
-          sx: { backgroundColor: 'rgba(0, 0, 0, 0.5)' }, // Semi-transparent black backdrop
-        }}
         PaperProps={{
           sx: {
             backgroundColor: 'transparent',

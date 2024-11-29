@@ -52,6 +52,7 @@ function Root() {
         </Grid>
         
         {/* Facebook Page Section at the Bottom */}
+        
         <Box
           sx={{
             display: 'flex',
@@ -85,10 +86,10 @@ function Root() {
           >
             <FacebookPageMobile
               pageUrl="https://www.facebook.com/hcslavojvelkepopovice/"
-              wallpaperUrl="https://scontent.fprg5-1.fna.fbcdn.net/v/t39.30808-6/461259141_1061589272644622_1073752436884984907_n.jpg?stp=dst-jpg_s960x960&_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=8BDKYlO09xQQ7kNvgEsJxFM&_nc_zt=23&_nc_ht=scontent.fprg5-1.fna&_nc_gid=Ag7fyAIuSEWnCikipRx0iGS&oh=00_AYC0-Pn9lhOyMNO1hZMjJaZJ4WzJH1lT_Y6Ozw6KvCVkOQ&oe=6727F6D2" // Replace with actual wallpaper URL
-              profileImageUrl="https://scontent.fprg5-1.fna.fbcdn.net/v/t39.30808-1/462077812_1068315781971971_6556414502344489979_n.jpg?stp=dst-jpg_s200x200&_nc_cat=104&ccb=1-7&_nc_sid=f4b9fd&_nc_ohc=qxIwMSGPvowQ7kNvgEXtnm8&_nc_zt=24&_nc_ht=scontent.fprg5-1.fna&_nc_gid=Ag7fyAIuSEWnCikipRx0iGS&oh=00_AYDuTVS907WVkEuCp8mxXwb3WE7T_8KE9U0D-AyyJYaCuw&oe=6727F4D8" // Replace with actual profile image URL
+              wallpaperUrl="https://scontent.fprg5-1.fna.fbcdn.net/v/t39.30808-6/461259141_1061589272644622_1073752436884984907_n.jpg?stp=dst-jpg_s960x960&_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=U06BplfbqXwQ7kNvgENb-Yv&_nc_zt=23&_nc_ht=scontent.fprg5-1.fna&_nc_gid=AdTuP4MBJuUpPvBjJzEFKYa&oh=00_AYDzk_8raGkQEJq2J4hFUHimRFmgtgxl6LqlCLo1TuekWg&oe=674FF452" // Replace with actual wallpaper URL
+              profileImageUrl="https://scontent.fprg5-1.fna.fbcdn.net/v/t39.30808-1/462077812_1068315781971971_6556414502344489979_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=f4b9fd&_nc_ohc=mACSNXrZDmwQ7kNvgENU2PA&_nc_zt=24&_nc_ht=scontent.fprg5-1.fna&_nc_gid=AdTuP4MBJuUpPvBjJzEFKYa&oh=00_AYBLLJVaFuhqQapodQ_G9NxcrlTpNYze4lCSFqyRg216mA&oe=674FF258" // Replace with actual profile image URL
               pageName="HC Slavoj Velke Popovice" // Replace with the actual page name
-              followersCount="1,097" // Replace with the actual follower count
+              followersCount="1,103" // Replace with the actual follower count
             />
           </Box>
         </Box>
