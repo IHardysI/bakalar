@@ -1,13 +1,12 @@
 // src/components/ImageSlider.tsx
 import React, { useState, useEffect } from 'react';
+import firstImg from '../assets/firstImg.jpg'
+import secondImg from '../assets/secondImg.jpg'
+import thirdImg from '../assets/thirdImg.jpg'
+import forthImg from '../assets/forthImg.jpg'
+import fifthsImg from '../assets/fifthsImg.jpg'
 
-const images: string[] = [
-  'http://www.hcslavojvelkepopovice.cz/uvod/TH_24/DSC_0061.jpg',
-  'http://www.hcslavojvelkepopovice.cz/uvod/TH_24/DSC_0074.jpg',
-  'http://www.hcslavojvelkepopovice.cz/uvod/TH_24/DSC_0077.jpg',
-  'http://www.hcslavojvelkepopovice.cz/uvod/TH_24/DSC_0099.jpg',
-  'http://www.hcslavojvelkepopovice.cz/uvod/TH_24/DSC_0016.jpg',
-];
+const images: string[] = [ firstImg, secondImg, thirdImg, forthImg, fifthsImg ];
 
 const ImageSlider: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
