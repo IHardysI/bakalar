@@ -7,7 +7,6 @@ import Root from './Root';
 import ErrorPage from './routes/error-page.jsx';
 import Uvod from './routes/Uvod.jsx';
 import Klub from './routes/Klub.jsx';
-import ZakladniInformace from './routes/ZakladniInformace.jsx';
 import Kontakty from './routes/Kontakty.jsx';
 import Partnery from './routes/Partnery.jsx';
 import ZimniStadion from './routes/ZimniStadion.jsx';
@@ -36,10 +35,6 @@ const router = createBrowserRouter([
         path: 'klub',
         element: <Klub />,
         children: [
-          {
-            path: 'zakladni-informace',
-            element: <ZakladniInformace />,
-          },
           {
             path: 'kontakty',
             element: <Kontakty />,

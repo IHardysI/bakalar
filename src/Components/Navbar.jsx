@@ -36,7 +36,6 @@ const navItems = [
     label: "Klub",
     path: "/klub",
     children: [
-      { label: "Základní informace", path: "/klub/zakladni-informace" },
       { label: "Kontakty", path: "/klub/kontakty" },
       { label: "Partneři", path: "/klub/partneri" },
       { label: "Zimní stadion", path: "/klub/zimni-stadion" },
